@@ -1,14 +1,12 @@
 package com.emsi.many2many.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -18,8 +16,11 @@ import java.util.List;
 public class User {
     @Id
     private String userId;
+    // le username doit etre unique
+    @Column(name = "USER_NAME", unique = true, length = 20)
     private String userName;
+
     private String password;
-    @ManyToMany
-    private List<Role> roles;
+    @ManyToMany(mappedBy = "users", fetch= FetchType.EAGER)
+    private List<Role> roles = new ArrayList<>();
 }

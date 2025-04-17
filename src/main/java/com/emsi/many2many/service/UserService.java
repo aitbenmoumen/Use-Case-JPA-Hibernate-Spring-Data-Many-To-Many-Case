@@ -8,5 +8,5 @@ public interface UserService {
     Role addNewRole(Role role);
     User findUserByUsername(String username);
     Role findRoleByName(String roleName);
-    void addRoleToUser(String username, User user);
+    void addRoleToUser(String username, Role role);
 }
